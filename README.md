@@ -1,27 +1,62 @@
-# Webbpack Express Example App
+# Evaluate a News Article with Natural Language Processing Project
 
-The goal of this repo is be an example of a basic but functional app built on Express and Webpack.
+## Table of Contents
 
-If you want to follow along with the course, you will start from the master and switch to the appropriate numbered branches of this repo as needed. The branches are:
-- [0-initial-setup](https://github.com/udacity/fend-webpack-content/tree/0-initial-setup)
-- [1-install-webpack](https://github.com/udacity/fend-webpack-content/tree/1-install-webpack)
-- [2-add-webpack-entry](https://github.com/udacity/fend-webpack-content/tree/2-add-webpack-entry)
-- [3-webpack-output-and-loaders](https://github.com/udacity/fend-webpack-content/tree/3-webpack-output-and-loaders)
-- [4-webpack-plugins](https://github.com/udacity/fend-webpack-content/tree/4-webpack-plugins)
-- [5-webpack-mode](https://github.com/udacity/fend-webpack-content/tree/5-webpack-mode)
-- [6-webpack-for-convenience](https://github.com/udacity/fend-webpack-content/tree/6-webpack-for-convenience)
+* [About](#about)
+* [Languages](#languages)
+* [Dependencies](#dependencies)
+* [Functionality](#functionality)
 
-Each one is a step along the path to creating a fully functional webpack setup. In each branch, there will be a documentation file that lists out the steps taken in that branch (each step should also match to a git commit if you look at the history) which you can use as a checklist when setting up your own projects. 
+## About
 
-## Get Up and Running
+This project required me to build a web tool that allows users to run Natural Language Processing (NLP) on articles or blogs found on other websites.
 
-Fork this repo, then clone your forked repo down to your computer:
+## Languages
 
-```
-git clone -- git@github.com:[your-user-name]/webpack-express.git --
-```
+* JavaScript
+* HTML
+* CSS
 
-`cd` into your new folder and run:
-- ```npm install```
-- ```npm start``` to start the app
-- this app runs on localhost:8080, but you can of course edit that in index.js
+## Dependencies
+
+* Node.js
+* NPM
+    * @babel/core
+    * @babel/preset-env
+    * babel-loader
+    * body-parser
+    * clean-webpack-plugin
+    * cors
+    * css-loader
+    * css-minimizer-webpack-plugin
+    * dotenv
+    * express
+    * html-webpack-plugin
+    * jest
+    * mini-css-extract-plugin
+    * node-fetch
+    * node-sass
+    * sass-loader
+    * style-loader
+    * supertest
+    * webpack-cli
+    * webpack-dev-server
+    * webpack
+    * workbox-webpack-plugin
+
+## Functionality
+
+Create NLP Evaluator server:
+
+* POST /evaluate API to evaluate URL via MeaningCloud Sentiment Analysis API
+* Serve NLP Evaluator website
+* Access MeaningCloud API key via local .env file
+* Log API errors to console
+
+Create NLP Evaluator website:
+
+* Post URL to NLP Evaluator server
+* Update evaluation results on page
+* Prevent sending multiple requests at once
+* Cache website for offline access
+* Show friendly error message on missing fields or network failure

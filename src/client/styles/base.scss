@@ -1,0 +1,35 @@
+body {
+    font-family: Helvetica, Arial, Courier, sans-serif;
+    color: #fff;
+    background-color: #222629;
+    display: grid;
+    justify-items: center;
+    row-gap: 1em;
+    margin: 0.5em;
+}
+
+main {
+    display: grid;
+    grid-row-gap: 0.5em;
+    min-width: 304px;
+}
+
+h1 {
+    font-size: 1.4em;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #61892f;
+}
+
+a {
+    color: #61892f;
+}
+
+a:active, a:focus, a:hover {
+    color: #86c232;
+    outline: none;
+}

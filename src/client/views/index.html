@@ -1,45 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-        <script type="text/javascript" src="/js/nameChecker.js"></script>
-        <script type="text/javascript" src="/js/formHandler.js"></script>
-        <link rel="stylesheet" href="/styles/resets.css">
-        <link rel="stylesheet" href="/styles/base.css">
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Evaluate an article or blog with Natural Language Processing</title>
     </head>
-
     <body>
-
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
+        <header id="header" aria-labelledby="h1">
+            <h1 id="h1">Natural Language Evaluator</h1>
         </header>
-
         <main>
-            <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
-            </section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
+            <form id="form" action="#" onsubmit="return Client.handleSubmit(event)" aria-label="Article or blog for analysis">
+                <label for="url">Article or blog URL</label>
+                <input id="url" class="field" type="text" placeholder="http://... URL only" maxlength="1956" >
+                <button id="evaluate" type="submit" aria-labelledby="form">Evaluate</button>
+            </form>
+            <section id="form__results" aria-labelledby="h2">
+                <h2 id="h2">Results</h2>
+                <div id="results__holder"></div>
             </section>
         </main>
-
-        <footer>
-            <p>This is a footer</p>
+        <footer id="footer" aria-label="Copyright">
+            <p>Service provided by <a href="https://www.meaningcloud.com">MeaningCloud LLC</a></p>
         </footer>
-
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js')
+                })
+            }
+        </script>
     </body>
 </html>
