@@ -14,7 +14,7 @@ const handleSubmit = (e) => {
         setTimeout(() => {
             document.getElementById('evaluate').disabled = true
         }, 0)
-        fetch('http://localhost:8081/evaluate', {
+        fetch('/evaluate', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
