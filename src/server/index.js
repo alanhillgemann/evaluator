@@ -1,22 +1,50 @@
-var path = require('path')
+const path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
-
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const fetch = require('node-fetch')
 const app = express()
+const dotenv = require('dotenv').config()
+if (dotenv.error) {
+    throw dotenv.error
+}
+const apiKey = process.env.API_KEY
+const baseURL = 'https://api.meaningcloud.com/sentiment-2.1'
 
-app.use(express.static('src/client'))
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(express.static('dist'))
 
-console.log(__dirname)
+const port = 8080
+const listening = () => {
+    console.log(`Server running on localhost: ${port}`)
+}
+app.listen(port, listening())
 
 app.get('/', function (req, res) {
-    res.sendFile('/client/views/index.html', { root: __dirname + '/..' })
+    res.sendFile('/dist/index.html', )
 })
 
-// designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.post('/evaluate', function (req, res) {
+    const evaluateURL = req.body.evaluateURL
+    console.log(`/evaluate | ${evaluateURL}`)
+    const reqURL = baseURL + '?key=' + apiKey + '&lang=en&url=' + evaluateURL
+    fetch(reqURL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(res => res.json())
+    .then(json => res.send(json))
+    .catch((err) => {
+        console.error(err)
+        return res.status(500).send(err)
+    })
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
+module.exports = app
